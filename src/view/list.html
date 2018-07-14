@@ -1,5 +1,4 @@
-{{extend ("./parent.html")}}
-{{#block ("RightContent")}}
+{{extend ("./parent.html")}} {{#block ("RightContent")}}
 <div class="panel panel-default">
     <div class="panel-heading">
         <ol class="breadcrumb">
@@ -40,9 +39,8 @@
                     <td>{{this.sex}}</td>
                     <td>{{this.phone}}</td>
                     <td>
-                        <a href="#" class="btn btn-success">编辑</a> |
-
-                        <input type="button" class="btn btn-danger" value="删除">
+                        <a href="/studentmanager/edit/{{this._id}}" class="btn btn-success">编辑</a> |
+                        <input type="button" onclick="delectStudent('{{this._id}}')" class="btn btn-danger" value="删除">
                     </td>
                 </tr>
                 {{/each}}
@@ -51,9 +49,14 @@
     </div>
 </div>
 <script>
-    function search(){
+    function search() {
         var searchValue = $('#studentNameId').val();
-        window.location.href = '/studentmanager/list?searchValue='+searchValue;
+        window.location.href = '/studentmanager/list?searchValue=' + searchValue;
     }
-</script>
-{{/block}}
+    function delectStudent(studentId) {
+        if (confirm("你确定要删除吗?")) {
+            window.location.href = `/studentmanager/delete/${studentId}`;
+            
+        }
+    }
+</script> {{/block}}

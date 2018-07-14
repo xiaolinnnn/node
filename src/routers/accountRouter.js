@@ -18,5 +18,7 @@ accountRouter.get('/register',accountCtrl.getRegister);
 accountRouter.post('/register',accountCtrl.register);
 //登录
 accountRouter.post('/login',accountCtrl.login)
+//处理登出请求
+accountRouter.get('/logout',accountCtrl.logout)
 //暴露出去
 module.exports = accountRouter;

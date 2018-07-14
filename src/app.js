@@ -12,6 +12,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(session({ secret: 'keyboard cat',resave:true,saveUninitialized:true, cookie: { maxAge: 10 * 60000 }}))
+//进行请求的拦截
+app.all("*",(req,res,next)=>{
+  if(req.url.includes("account")){
+    next();
+  }else{
+    if(!req.session.loginName){//没有登录
+        res.send("<script>alert('你还没登录,请登录');location.href='/account/login'</script>")
+        return;
+    }
+    next();
+  }
+})
 //路由
 const accountRouter = require(path.join(__dirname, "./routers/accountRouter"));
 app.use("/account", accountRouter);

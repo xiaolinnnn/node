@@ -80,7 +80,17 @@ exports.login = (req, res) => {
       //没查询到
       result.status = 2;
       result.message = "用户名或密码错误";
+    }else{
+      req.session.loginName = username;
     }
     res.json(result);
   });
 };
+//登出
+exports.logout = (req,res)=>{
+   //1.清空session中的用户名
+   req.session.loginName = null
+
+   //2.通过响应的形式，跳转到登录页面
+   res.send('<script>location.href="/account/login"</script>')
+}

@@ -13,5 +13,11 @@ studentManagerRouter.get('/list',studentManagerCTRL.getStudentListPage)
 studentManagerRouter.get('/add',studentManagerCTRL.getAddPage);
 //新增学生
 studentManagerRouter.post('/add',studentManagerCTRL.addStudent);
+//编辑页面
+studentManagerRouter.get('/edit/:studentId',studentManagerCTRL.getEditPage);
+//修改
+studentManagerRouter.post('/edit/:studentId',studentManagerCTRL.editStudent);
+//删除
+studentManagerRouter.get('/delete/:studentId',studentManagerCTRL.deleteStudent);
 
 module.exports = studentManagerRouter
